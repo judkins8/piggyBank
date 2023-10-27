@@ -1,0 +1,9 @@
+<!-- piggybank_app/templates/parent_dashboard.html -->
+
+{% extends 'base.html' %} {% block content %}
+<h2>Parent Dashboard</h2>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}
