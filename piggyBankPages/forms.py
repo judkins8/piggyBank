@@ -1,18 +1,13 @@
-# piggybank_app/forms.py
-
 from django import forms
-from .models import AllowanceEntry, Purchase
+from .models import Transaction
 
-class AllowanceEntryForm(forms.ModelForm):
+class TransactionForm(forms.ModelForm):
     class Meta:
-        model = AllowanceEntry
-        fields = ['date', 'amount', 'chore_description']
+        model = Transaction
+        fields = ['date', 'amount', 'description', 'transaction_type']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'})
+            'date': forms.DateInput(attrs={'type': 'date'}),
         }
 
-
-class PurchaseForm(forms.ModelForm):
-    class Meta:
-        model = Purchase
-        fields = ['date', 'amount', 'description']
+class SavingsGoalForm(forms.Form):
+    savings_goal = forms.DecimalField(max_digits=10, decimal_places=2, label='Savings Goal')
