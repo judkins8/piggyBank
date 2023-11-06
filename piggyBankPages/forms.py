@@ -1,5 +1,7 @@
 from django import forms
-from .models import Transaction
+from .models import Transaction, SavingsGoal
+from django.forms import ModelForm
+
 
 class TransactionForm(forms.ModelForm):
     class Meta:
@@ -9,5 +11,8 @@ class TransactionForm(forms.ModelForm):
             'date': forms.DateInput(attrs={'type': 'date'}),
         }
 
-class SavingsGoalForm(forms.Form):
-    savings_goal = forms.DecimalField(max_digits=10, decimal_places=2, label='Savings Goal')
+
+class SavingsGoalForm(ModelForm):
+    class Meta:
+        model = SavingsGoal
+        fields = ['goal_amount']  # Or whichever fields you have
